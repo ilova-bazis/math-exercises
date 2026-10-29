@@ -2,6 +2,7 @@ import { useMathGame } from './hooks/useMathGame'
 import { HomeScreen } from './components/HomeScreen'
 import { SetupScreen } from './components/SetupScreen'
 import { ResultsScreen } from './components/ResultsScreen'
+import { PrintScreen } from './components/PrintScreen'
 import { ProblemDisplay } from './components/ProblemDisplay'
 import { NumberPad } from './components/NumberPad'
 import { ScoreBoard } from './components/ScoreBoard'
@@ -16,6 +17,7 @@ export default function App() {
       <HomeScreen
         onEndless={() => game.startEndless(1)}
         onFinite={game.goToSetup}
+        onPrint={game.goToPrint}
       />
     )
   }
@@ -27,6 +29,10 @@ export default function App() {
         onBack={game.goHome}
       />
     )
+  }
+
+  if (game.screen === 'print') {
+    return <PrintScreen onBack={game.goHome} />
   }
 
   if (game.screen === 'results') {

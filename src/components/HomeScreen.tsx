@@ -1,9 +1,10 @@
 interface Props {
   onEndless: () => void
   onFinite: () => void
+  onPrint: () => void
 }
 
-export function HomeScreen({ onEndless, onFinite }: Props) {
+export function HomeScreen({ onEndless, onFinite, onPrint }: Props) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm text-center">
@@ -28,6 +29,16 @@ export function HomeScreen({ onEndless, onFinite }: Props) {
             Finite Session
             <span className="mt-1 block text-sm font-normal text-gray-500">
               Set difficulty and number of problems
+            </span>
+          </button>
+
+          <button
+            onClick={onPrint}
+            className="w-full rounded-2xl bg-white py-5 text-xl font-bold text-gray-800 shadow-lg transition active:scale-[0.98] active:bg-gray-100"
+          >
+            Print Worksheet
+            <span className="mt-1 block text-sm font-normal text-gray-500">
+              Generate printable exercises &amp; answer key
             </span>
           </button>
         </div>

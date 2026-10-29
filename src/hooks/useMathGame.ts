@@ -3,7 +3,7 @@ import { generateProblem, POINTS, type Problem } from '../utils/problemGenerator
 
 export type Feedback = 'correct' | 'incorrect' | null
 export type GameMode = 'endless' | 'finite'
-export type Screen = 'home' | 'setup' | 'practice' | 'results'
+export type Screen = 'home' | 'setup' | 'practice' | 'results' | 'print'
 export type InputDirection = 'ltr' | 'rtl'
 
 const NEXT_PROBLEM_DELAY = 800
@@ -50,6 +50,10 @@ export function useMathGame() {
 
   const goToSetup = useCallback(() => {
     setScreen('setup')
+  }, [])
+
+  const goToPrint = useCallback(() => {
+    setScreen('print')
   }, [])
 
   const startEndless = useCallback((lvl: number) => {
@@ -197,6 +201,7 @@ export function useMathGame() {
     checkAnswer,
     goHome,
     goToSetup,
+    goToPrint,
     startEndless,
     startFinite,
   }

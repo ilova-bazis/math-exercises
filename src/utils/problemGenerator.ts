@@ -63,6 +63,22 @@ function genLevel7(): Problem {
   return { a, b, answer: a + b }
 }
 
+function gen2DigitPlus1To4NoCarry(): Problem {
+  const b = pick([1, 2, 3, 4])
+  const tens = randInt(1, 9)
+  const ones = randInt(0, 9 - b)
+  const a = tens * 10 + ones
+  return { a, b, answer: a + b }
+}
+
+function gen2DigitPlus1To4Carry(): Problem {
+  const b = pick([1, 2, 3, 4])
+  const tens = randInt(1, 9)
+  const ones = randInt(10 - b, 9)
+  const a = tens * 10 + ones
+  return { a, b, answer: a + b }
+}
+
 function genLevel8(): Problem {
   const a = randInt(10, 99)
   const b = randInt(0, 9)
@@ -115,12 +131,14 @@ export const POINTS: Record<number, number> = {
   5: 15,
   6: 18,
   7: 20,
-  8: 25,
-  9: 30,
-  10: 35,
-  11: 45,
-  12: 55,
-  13: 70,
+  8: 22,
+  9: 24,
+  10: 25,
+  11: 30,
+  12: 35,
+  13: 45,
+  14: 55,
+  15: 70,
 }
 
 export const LEVELS: Level[] = [
@@ -131,12 +149,14 @@ export const LEVELS: Level[] = [
   { id: 5, name: '+4,+5', description: 'Sums up to 10', generate: genLevel5 },
   { id: 6, name: '+6,+7', description: 'Sums up to 20', generate: genLevel6 },
   { id: 7, name: '+8,+9', description: 'Sums up to 20', generate: genLevel7 },
-  { id: 8, name: '2-digit+1', description: 'Two-digit + one-digit', generate: genLevel8 },
-  { id: 9, name: 'No Carry', description: 'Two-digit, no carrying', generate: genLevel9 },
-  { id: 10, name: 'Carry', description: 'Two-digit, with carrying', generate: genLevel10 },
-  { id: 11, name: '3-digit', description: 'Three-digit + two-digit', generate: genLevel11 },
-  { id: 12, name: 'Big', description: 'Three-digit + three-digit', generate: genLevel12 },
-  { id: 13, name: 'Max', description: 'Four-digit + four-digit', generate: genLevel13 },
+  { id: 8, name: '2d +1..4', description: 'Two-digit +1,+2,+3,+4 (no carry)', generate: gen2DigitPlus1To4NoCarry },
+  { id: 9, name: '2d +1..4 Carry', description: 'Two-digit +1,+2,+3,+4 (with carry)', generate: gen2DigitPlus1To4Carry },
+  { id: 10, name: '2-digit+1', description: 'Two-digit + one-digit', generate: genLevel8 },
+  { id: 11, name: 'No Carry', description: 'Two-digit, no carrying', generate: genLevel9 },
+  { id: 12, name: 'Carry', description: 'Two-digit, with carrying', generate: genLevel10 },
+  { id: 13, name: '3-digit', description: 'Three-digit + two-digit', generate: genLevel11 },
+  { id: 14, name: 'Big', description: 'Three-digit + three-digit', generate: genLevel12 },
+  { id: 15, name: 'Max', description: 'Four-digit + four-digit', generate: genLevel13 },
 ]
 
 export function generateProblem(levelId: number): Problem {
